@@ -99,7 +99,7 @@ describe('routeOutputFiles', () => {
     expect(routeOutputFiles(['gba-pocket'])).toEqual([
       '404.html',
       'gba-pocket/index.html',
-      'gba-pocket/privacy/index.html',
+      'gba-pocket/privacy-policy/index.html',
     ])
   })
 })

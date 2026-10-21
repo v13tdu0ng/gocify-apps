@@ -231,6 +231,39 @@ h1 {
 
 .card p { margin: 0; }
 
+.card .sticker {
+  align-self: stretch;
+  width: 100%;
+}
+
+.card-gba {
+  position: relative;
+}
+
+.card-border-load {
+  position: absolute;
+  z-index: 3;
+  inset: -3px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.card-border-load rect {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.card-gba:hover .card-border-load rect {
+  animation: card-border-load 1.35s linear infinite;
+}
+
+@keyframes card-border-load {
+  to { stroke-dashoffset: 0; }
+}
+
 .icon-frame {
   display: grid;
   place-items: center;
@@ -398,4 +431,5 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .sticker { transition: none; }
+  .card-gba:hover .card-border-load rect { animation: none; }
 }

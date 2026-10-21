@@ -95,7 +95,7 @@ export function DetailPage({ lang, onLangChange, status, app }: DetailPageProps)
                 <Retype text={t.playStore} />
               </a>
             )}
-            <a className="sticker sticker-pink" href={`${SITE_BASE}/${app.slug}/privacy/`}>
+            <a className="sticker sticker-pink" href={`${SITE_BASE}/${app.slug}/privacy-policy/`}>
               <Retype text={t.privacyLong} />
             </a>
           </div>

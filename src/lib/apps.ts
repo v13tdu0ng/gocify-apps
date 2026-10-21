@@ -105,7 +105,7 @@ export function filterSafeSlugs(slugs: string[]): string[] {
 }
 
 export function routeOutputFiles(slugs: string[]): string[] {
-  return ['404.html', ...slugs.flatMap((slug) => [`${slug}/index.html`, `${slug}/privacy/index.html`])]
+  return ['404.html', ...slugs.flatMap((slug) => [`${slug}/index.html`, `${slug}/privacy-policy/index.html`])]
 }
 
 export function isSupabaseConfigured(url?: string, key?: string): boolean {

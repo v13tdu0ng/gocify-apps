@@ -9,10 +9,10 @@ describe('renderHomePolicyHtml', () => {
       updatedOn: 'August 11, 2026',
       enMarkdown: 'English policy for **GBA Pocket**.',
       viMarkdown: 'Chính sách tiếng Việt.',
-      appsHref: '/gba-pocket-privacy-policy/',
-      cssHref: '/gba-pocket-privacy-policy/assets/policy.css',
-      logoHref: '/gba-pocket-privacy-policy/assets/gocify-logo.png',
-      faviconHref: '/gba-pocket-privacy-policy/favicon.png',
+      appsHref: '/gocify-apps/',
+      cssHref: '/gocify-apps/assets/policy.css',
+      logoHref: '/gocify-apps/assets/gocify-logo.png',
+      faviconHref: '/gocify-apps/favicon.png',
     })
 
     expect(html).toContain('Privacy Policy — GBA Pocket')
@@ -22,12 +22,12 @@ describe('renderHomePolicyHtml', () => {
     expect(html).toContain('<section id="policy-vi" lang="vi">')
     expect(html).toContain('<strong>GBA Pocket</strong>')
     expect(html).toContain('Chính sách tiếng Việt.')
-    expect(html).toContain('href="/gba-pocket-privacy-policy/"')
-    expect(html).toContain('href="/gba-pocket-privacy-policy/assets/policy.css"')
+    expect(html).toContain('href="/gocify-apps/"')
+    expect(html).toContain('href="/gocify-apps/assets/policy.css"')
     expect(html).toContain('class="topbar"')
     expect(html).toContain('alt="GOCIFY"')
-    expect(html).toContain('src="/gba-pocket-privacy-policy/assets/gocify-logo.png"')
-    expect(html).toContain('href="/gba-pocket-privacy-policy/favicon.png"')
+    expect(html).toContain('src="/gocify-apps/assets/gocify-logo.png"')
+    expect(html).toContain('href="/gocify-apps/favicon.png"')
     expect(html).toContain('>VI</button>')
     expect(html).toContain('>EN</button>')
   })

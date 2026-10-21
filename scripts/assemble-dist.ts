@@ -51,9 +51,16 @@ for (const relativePath of routeOutputFiles(routeSlugs)) {
 }
 
 const homeSlug = filterSafeSlugs([home?.slug || 'gba-pocket'])[0] || 'gba-pocket'
-const policyFile = join(root, 'dist', homeSlug, 'privacy/index.html')
+const policyFile = join(root, 'dist', homeSlug, 'privacy-policy/index.html')
 mkdirSync(dirname(policyFile), { recursive: true })
 writeFileSync(policyFile, html)
+
+for (const slug of routeSlugs) {
+  const target = `${SITE_BASE}/${slug}/privacy-policy/`
+  const redirectFile = join(root, 'dist', slug, 'privacy/index.html')
+  mkdirSync(dirname(redirectFile), { recursive: true })
+  writeFileSync(redirectFile, privacyRedirect(target))
+}
 mkdirSync(join(root, 'dist/assets'), { recursive: true })
 writeFileSync(
   join(root, 'dist/assets/policy.css'),
@@ -61,6 +68,22 @@ writeFileSync(
 )
 
 console.log(`Baked privacy policy for ${home?.name || 'GBA Pocket'} and ${routeSlugs.length} app route(s).`)
+
+function privacyRedirect(target: string): string {
+  const href = target.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="0; url=${href}" />
+  <link rel="canonical" href="${href}" />
+  <title>Privacy Policy</title>
+  <script>location.replace(${JSON.stringify(target)})</script>
+</head>
+<body></body>
+</html>
+`
+}
 
 type RemoteApp = {
   slug: string

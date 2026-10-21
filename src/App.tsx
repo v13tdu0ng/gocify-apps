@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, useParams } from 'react-router'
+import { Navigate, Route, Routes, useParams } from 'react-router'
 import { createClient } from '@supabase/supabase-js'
 import { isSupabaseConfigured, mapAppRow, type AppRow, type StoreApp } from './lib/apps'
 import { bundledApps } from './lib/fallback'
@@ -72,12 +72,18 @@ export function App() {
     <Routes>
       <Route path="/" element={<CatalogPage lang={lang} onLangChange={onLangChange} apps={apps} status={status} />} />
       <Route path="/:slug" element={<AppRoute lang={lang} onLangChange={onLangChange} apps={apps} status={status} page="detail" />} />
+      <Route path="/:slug/privacy" element={<PrivacyRedirect />} />
       <Route
-        path="/:slug/privacy"
+        path="/:slug/privacy-policy"
         element={<AppRoute lang={lang} onLangChange={onLangChange} apps={apps} status={status} page="privacy" />}
       />
     </Routes>
   )
+}
+
+function PrivacyRedirect() {
+  const { slug } = useParams()
+  return <Navigate to={`/${slug}/privacy-policy`} replace />
 }
 
 function AppRoute({

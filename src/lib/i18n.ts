@@ -15,7 +15,7 @@ export const copy = {
   vi: {
     catalogTitle: 'Ứng dụng',
     badge: 'Xin chào',
-    open: 'Xem',
+    open: 'Khám phá',
     download: 'Tải về',
     playDownload: 'Tải trên Google Play',
     playStore: 'Play Store',
@@ -33,7 +33,7 @@ export const copy = {
   en: {
     catalogTitle: 'Apps',
     badge: 'Hello',
-    open: 'Open',
+    open: 'Explore',
     download: 'Download',
     playDownload: 'Download on Google Play',
     playStore: 'Play Store',

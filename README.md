@@ -2,11 +2,13 @@
 
 Cửa hàng app cá nhân, theo kiểu Play Store, kèm privacy policy cho Google Play.
 
-**Trang chủ:** https://v13tdu0ng.github.io/gba-pocket-privacy-policy/
+**Trang chủ:** https://v13tdu0ng.github.io/gocify-apps/
 
-**Policy của GBA Pocket:** https://v13tdu0ng.github.io/gba-pocket-privacy-policy/gba-pocket/privacy
+**Game:** https://v13tdu0ng.github.io/gocify-apps/gba-pocket
 
-Trang chủ là cửa hàng app. Privacy policy của từng app nằm ở `/{slug}/privacy`. Policy của GBA Pocket được ghi thành HTML lúc build, để dán vào Play Console. Sửa policy xong thì chạy lại GitHub Action. Thêm app hoặc đổi APK thì cửa hàng thấy ngay.
+**Policy của GBA Pocket:** https://v13tdu0ng.github.io/gocify-apps/gba-pocket/privacy-policy
+
+Trang chủ là cửa hàng app. Chọn một game thì địa chỉ thêm `/{tên-game}`. Privacy policy của game đó nằm ở `/{tên-game}/privacy-policy`. Policy của GBA Pocket được ghi thành HTML lúc build, để dán vào Play Console. Sửa policy xong thì chạy lại GitHub Action. Thêm app hoặc đổi APK thì cửa hàng thấy ngay.
 
 ## Chạy local
 
@@ -55,6 +57,6 @@ Anon key là khóa public. Khách chỉ đọc được app đã xuất bản. S
 
 Trong Play Console, dùng URL policy của GBA Pocket:
 
-`https://v13tdu0ng.github.io/gba-pocket-privacy-policy/gba-pocket/privacy`
+`https://v13tdu0ng.github.io/gocify-apps/gba-pocket/privacy-policy`
 
-Trên GitHub Pages, tên repo vẫn nằm trong địa chỉ. Bản chạy local thì mở thẳng http://localhost:4173/.
+Trên GitHub Pages, tên repo `gocify-apps` nằm trong địa chỉ. Bản chạy local thì mở thẳng http://localhost:4173/, game ở `/gba-pocket`, policy ở `/gba-pocket/privacy-policy`.
