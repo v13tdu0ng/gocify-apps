@@ -1,4 +1,3 @@
-import { useLayoutEffect, useRef } from 'react'
 import { AppIcon } from '../components/AppIcon'
 import { Frame } from '../components/Frame'
 import { Retype } from '../components/Retype'
@@ -16,36 +15,6 @@ type CatalogPageProps = {
 }
 
 const tones = ['tone-0', 'tone-1', 'tone-2', 'tone-3', 'tone-4']
-
-function BorderLoad() {
-  const rectRef = useRef<SVGRectElement>(null)
-
-  useLayoutEffect(() => {
-    const rect = rectRef.current
-    const svg = rect?.ownerSVGElement
-    if (!rect || !svg) return
-
-    const fit = () => {
-      if (typeof rect.getTotalLength !== 'function') return
-      const length = rect.getTotalLength()
-      if (!Number.isFinite(length) || length <= 0) return
-      rect.style.strokeDasharray = `${length}`
-      rect.style.strokeDashoffset = `${length}`
-    }
-
-    fit()
-    if (typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver(fit)
-    observer.observe(svg)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <svg className="card-border-load" aria-hidden="true">
-      <rect ref={rectRef} x="1.5" y="1.5" width="calc(100% - 3px)" height="calc(100% - 3px)" rx="20.5" ry="20.5" />
-    </svg>
-  )
-}
 
 export function CatalogPage({ lang, onLangChange, apps, status }: CatalogPageProps) {
   const t = copy[lang]
@@ -84,7 +53,6 @@ export function CatalogPage({ lang, onLangChange, apps, status }: CatalogPagePro
                 className={`card ${tones[index % tones.length]}${app.slug === 'gba-pocket' ? ' card-gba' : ''}`}
                 to={`/${app.slug}`}
               >
-                {app.slug === 'gba-pocket' && <BorderLoad />}
                 <AppIcon name={app.name} url={app.iconUrl} />
                 <h2>{app.name}</h2>
                 <p>

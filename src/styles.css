@@ -236,32 +236,16 @@ h1 {
   width: 100%;
 }
 
-.card-gba {
-  position: relative;
+.card-gba:hover {
+  background-image: linear-gradient(115deg, var(--pink) 0%, var(--yellow) 45%, var(--pink) 100%);
+  background-size: 220% 220%;
+  animation: card-gradient 2.2s ease infinite;
 }
 
-.card-border-load {
-  position: absolute;
-  z-index: 3;
-  inset: -3px;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.card-border-load rect {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 3px;
-}
-
-.card-gba:hover .card-border-load rect {
-  animation: card-border-load 1.35s linear infinite;
-}
-
-@keyframes card-border-load {
-  to { stroke-dashoffset: 0; }
+@keyframes card-gradient {
+  0% { background-position: 0% 40%; }
+  50% { background-position: 100% 60%; }
+  100% { background-position: 0% 40%; }
 }
 
 .icon-frame {
@@ -431,5 +415,9 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   .card,
   .sticker { transition: none; }
-  .card-gba:hover .card-border-load rect { animation: none; }
+  .card-gba:hover {
+    animation: none;
+    background-image: linear-gradient(115deg, var(--pink), var(--yellow));
+    background-size: 100% 100%;
+  }
 }
