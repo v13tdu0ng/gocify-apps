@@ -30,6 +30,9 @@ describe('renderHomePolicyHtml', () => {
     expect(html).toContain('href="/gocify-apps/favicon.png"')
     expect(html).toContain('>VI</button>')
     expect(html).toContain('>EN</button>')
+    expect(html).toContain('class="board-clip"')
+    expect(html).toContain('class="board-pad"')
+    expect(html).toContain('is-collapsed')
   })
 })
 

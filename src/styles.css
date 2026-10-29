@@ -18,10 +18,29 @@ body {
 }
 
 .board {
-  padding: 16px;
+  overflow: hidden;
   background: var(--board);
   border: var(--border);
   border-radius: 28px;
+}
+
+.board-clip {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.board.is-collapsed .board-clip {
+  grid-template-rows: 0fr;
+}
+
+.board-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.board-pad {
+  padding: 16px;
 }
 
 .topbar {
@@ -117,24 +136,10 @@ body {
   color: var(--yellow);
 }
 
-.caret {
-  display: inline-block;
-  width: 2px;
-  height: 0.85em;
-  margin-left: 2px;
-  background: currentColor;
-  vertical-align: -0.08em;
-  animation: caret-blink 0.8s steps(1) infinite;
-}
-
-@keyframes caret-blink {
-  50% { opacity: 0; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .langs::before { transition: none; }
-  .langs button { transition: none; }
-  .caret { animation: none; }
+  .langs::before,
+  .langs button,
+  .board-clip { transition: none; }
 }
 
 .hero {

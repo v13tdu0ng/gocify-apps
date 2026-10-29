@@ -57,7 +57,10 @@ describe('CatalogPage', () => {
     await userEvent.click(screen.getByRole('button', { name: 'VI' }))
 
     expect(screen.getByRole('group', { name: 'Ngôn ngữ' })).toHaveAttribute('data-lang', 'vi')
+    expect(screen.getByText('English summary')).toBeInTheDocument()
+    expect(document.querySelector('.board')).toHaveClass('is-collapsed')
     expect(await screen.findByText('Tóm tắt tiếng Việt', {}, { timeout: 2000 })).toBeInTheDocument()
+    expect(document.querySelector('.board')).not.toHaveClass('is-collapsed')
   })
 })
 

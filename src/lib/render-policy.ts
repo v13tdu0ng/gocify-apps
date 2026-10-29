@@ -79,6 +79,9 @@ export function renderHomePolicyHtml(input: HomePolicyInput): string {
         </nav>
       </header>
       <main class="board">
+      <div class="board-clip">
+      <div class="board-inner">
+      <div class="board-pad">
       <p class="jump">
         <a class="sticker only-vi" data-nav="back" href="${appsHref}">Ứng dụng</a>
         <a class="sticker only-en" data-nav="back" href="${appsHref}">Apps</a>
@@ -99,29 +102,55 @@ export function renderHomePolicyHtml(input: HomePolicyInput): string {
         <p class="lang">Tiếng Việt</p>
         ${renderMarkdown(input.viMarkdown)}
       </section>
+      </div>
+      </div>
+      </div>
       </main>
     </div>
   </div>
   <script>
     (function () {
       var group = document.querySelector('.langs')
+      var board = document.querySelector('.board')
       if (!group) return
-      function apply(lang) {
-        document.documentElement.setAttribute('data-lang', lang)
+      var requested = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'vi'
+      var swapTimer = 0
+      function paintToggle(lang) {
         group.setAttribute('data-lang', lang)
         var buttons = group.querySelectorAll('button')
         for (var i = 0; i < buttons.length; i++) {
           buttons[i].setAttribute('aria-pressed', buttons[i].getAttribute('data-lang') === lang ? 'true' : 'false')
         }
       }
-      apply(document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'vi')
+      function paintPage(lang) {
+        document.documentElement.setAttribute('data-lang', lang)
+      }
+      function apply(lang) {
+        requested = lang
+        paintToggle(lang)
+        paintPage(lang)
+      }
+      apply(requested)
       group.addEventListener('click', function (event) {
         var button = event.target.closest('button')
         if (!button) return
         var lang = button.getAttribute('data-lang')
-        if (lang !== 'vi' && lang !== 'en') return
+        if ((lang !== 'vi' && lang !== 'en') || lang === requested) return
+        requested = lang
         try { localStorage.setItem('lang', lang) } catch (e) {}
-        apply(lang)
+        paintToggle(lang)
+        var reduce = false
+        try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch (e) {}
+        if (reduce || !board) {
+          paintPage(lang)
+          return
+        }
+        board.classList.add('is-collapsed')
+        window.clearTimeout(swapTimer)
+        swapTimer = window.setTimeout(function () {
+          paintPage(requested)
+          board.classList.remove('is-collapsed')
+        }, 280)
       })
     })()
   </script>

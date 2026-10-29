@@ -96,10 +96,29 @@ html[data-lang="en"] .langs button[data-lang="en"],
 }
 
 .board {
-  padding: 22px 20px 28px;
+  overflow: hidden;
   background: var(--board);
   border: var(--border);
   border-radius: 28px;
+}
+
+.board-clip {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.board.is-collapsed .board-clip {
+  grid-template-rows: 0fr;
+}
+
+.board-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.board-pad {
+  padding: 22px 20px 28px;
 }
 
 .jump { margin: 0 0 18px; }
@@ -184,5 +203,6 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   .langs::before,
-  .langs button { transition: none; }
+  .langs button,
+  .board-clip { transition: none; }
 }
